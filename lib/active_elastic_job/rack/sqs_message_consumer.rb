@@ -33,7 +33,7 @@ module ActiveElasticJob
 
       def call(env) #:nodoc:
         request = ActionDispatch::Request.new env
-        if enabled? && (aws_sqsd?(request) || sqsd?(request))
+        if enabled? && aws_sqsd?(request)
           unless request.local? || sent_from_docker_host?(request)
             return FORBIDDEN_RESPONSE
           end
